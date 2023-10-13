@@ -9,26 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Profile = void 0;
+exports.Channel = void 0;
 const typeorm_1 = require("typeorm");
-let Profile = class Profile {
+const user_entity_1 = require("./user.entity");
+let Channel = class Channel {
     id;
-    gender;
-    photo;
+    name;
+    crated_at;
+    user;
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], Profile.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
-], Profile.prototype, "gender", void 0);
+], Channel.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: "varchar", length: 128 }),
     __metadata("design:type", String)
-], Profile.prototype, "photo", void 0);
-Profile = __decorate([
-    (0, typeorm_1.Entity)({ name: 'person' })
-], Profile);
-exports.Profile = Profile;
+], Channel.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: "timestamptz" }),
+    __metadata("design:type", Date)
+], Channel.prototype, "crated_at", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (u) => u.channels),
+    __metadata("design:type", user_entity_1.User)
+], Channel.prototype, "user", void 0);
+Channel = __decorate([
+    (0, typeorm_1.Entity)()
+], Channel);
+exports.Channel = Channel;

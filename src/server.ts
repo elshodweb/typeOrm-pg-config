@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import typeorm from "./confs/typeorm";
+import { router } from "./routes";
 
 typeorm
   .initialize()
@@ -7,5 +8,7 @@ typeorm
   .catch((err) => console.log(err));
 
 const app: Application = express();
+app.use(express.json());
+app.use(router);
 
 app.listen(9090, (): void => console.log("listening"));

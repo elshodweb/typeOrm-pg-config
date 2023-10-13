@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
+    "moduleResolution": "Node",
     "module": "CommonJS",
     "target": "ESNext",
     "esModuleInterop": true,
@@ -11,6 +12,7 @@
     "outDir": "./dist",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
   }
 }
